@@ -8,6 +8,7 @@ RUN microdnf update \
     && make
 
 FROM ghcr.io/graalvm/jdk:ol8-java11
+LABEL org.opencontainers.image.authors="sycured" org.opencontainers.image.source="https://github.com/sycured/sonarqube-oci"
 ARG SONARQUBE_VERSION=9.6.1.59531 SONAR_RUST_VERSION=0.1.1
 ENV LANG='en_US.UTF-8' SONAR_VERSION=$SONARQUBE_VERSION
 COPY run.sh sonar.sh /usr/local/bin/
