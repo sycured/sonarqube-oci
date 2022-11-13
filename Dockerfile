@@ -1,13 +1,13 @@
-FROM ghcr.io/graalvm/jdk:ol8-java11 as suexec
+FROM ghcr.io/graalvm/jdk:ol9-java11 as suexec
 WORKDIR /opt
-RUN microdnf update \
+RUN microdnf update -y \
     && microdnf upgrade -y \
     && microdnf install -y gcc git make \
     && git clone -b master --single-branch https://github.com/ncopa/su-exec \
     && cd su-exec \
     && make
 
-FROM ghcr.io/graalvm/jdk:ol8-java11
+FROM ghcr.io/graalvm/jdk:ol9-java11
 LABEL org.opencontainers.image.authors="sycured" org.opencontainers.image.source="https://github.com/sycured/sonarqube-oci"
 ARG SONARQUBE_VERSION=9.7.1.62043 \
     SONAR_RUST_VERSION=0.1.3 \
@@ -20,7 +20,7 @@ ENV LANG='en_US.UTF-8' \
 COPY run.sh sonar.sh /usr/local/bin/
 COPY --from=suexec /opt/su-exec/su-exec /usr/local/bin/
 RUN adduser -M sonarqube -s /bin/bash \
-    && microdnf update \
+    && microdnf update -y \
     && microdnf upgrade -y \
     && microdnf install unzip -y \
     && rm -rf /var/cache/yum \
