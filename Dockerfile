@@ -1,4 +1,4 @@
-FROM ghcr.io/graalvm/jdk:ol9-java11 as suexec
+FROM ghcr.io/graalvm/jdk:ol9-java17 as suexec
 WORKDIR /opt
 RUN microdnf update -y \
     && microdnf upgrade -y \
@@ -7,7 +7,7 @@ RUN microdnf update -y \
     && cd su-exec \
     && make
 
-FROM ghcr.io/graalvm/jdk:ol9-java11
+FROM ghcr.io/graalvm/jdk:ol9-java17
 LABEL org.opencontainers.image.authors="sycured" org.opencontainers.image.source="https://github.com/sycured/sonarqube-oci"
 ARG SONARQUBE_VERSION=9.9.0.65466 \
     SONAR_RUST_VERSION=0.1.4 \
