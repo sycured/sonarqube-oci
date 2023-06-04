@@ -10,7 +10,7 @@ RUN microdnf update -y \
 FROM ghcr.io/graalvm/jdk:ol9-java17
 LABEL org.opencontainers.image.authors="sycured" org.opencontainers.image.source="https://github.com/sycured/sonarqube-oci"
 ARG SONARQUBE_VERSION=9.9.1.69595 \
-    SONAR_RUST_VERSION=0.2.0 \
+    SONAR_RUST_VERSION=0.2.1 \
     SONAR_CXX_PATCH_VERSION=488 \
     SONAR_CXX_VERSION=2.1.1 \
     BRANCH_PLUGIN_VERSION=1.14.0
